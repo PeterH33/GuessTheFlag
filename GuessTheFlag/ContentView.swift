@@ -26,7 +26,7 @@ struct ContentView: View {
     @State private var fadeWrongAnswer = false
     @State private var fadeOpacity = 1.0
     
-    //Accessability labels
+    //Accessibility labels
     let labels = [
         "Estonia": "Flag with three horizontal stripes of equal size. Top stripe blue, middle stripe black, bottom stripe white",
         "France": "Flag with three vertical stripes of equal size. Left stripe blue, middle stripe white, right stripe red",
@@ -58,7 +58,7 @@ struct ContentView: View {
         }
         
         if playCount < 8{
-        showingScore = true
+            showingScore = true
         } else {
             gameOver = true
         }
@@ -90,10 +90,10 @@ struct ContentView: View {
                 .renderingMode(.original)
                 .clipShape(Capsule())
                 .shadow(radius: 5)
-                
-                            //should be able to add the animations here in some way
+            
+            //should be able to add the animations here in some way
             //need to have a system that applies the animation to everything, and then a special animation that cancels out other animations and applies to the one that you clicked?
-                
+            
         }
     }
     
@@ -105,14 +105,14 @@ struct ContentView: View {
         
         
         ZStack{
-//            LinearGradient(colors: [.blue, .black], startPoint: .top, endPoint: .bottomTrailing)
+            //            LinearGradient(colors: [.blue, .black], startPoint: .top, endPoint: .bottomTrailing)
             //                .ignoresSafeArea()
             
             RadialGradient(stops: [
                 .init(color: Color(red: 0.1, green: 0.2, blue: 0.45), location: 0.25),
                 .init(color: Color(red: 0.76, green: 0.15, blue: 0.26), location: 0.26),
             ], center: .top, startRadius: 200, endRadius: 400)
-                .ignoresSafeArea()
+            .ignoresSafeArea()
             
             VStack{
                 Text("Guess the Flag")
@@ -153,7 +153,7 @@ struct ContentView: View {
                                 
                                 flagTapped(number)
                             } label: {
-                                //This sectino was commented out and replaced with a seperate view on day 24 to show how to use custom views
+//                                This section was commented out and replaced with a separate view on day 24 to show how to use custom views
 //                                Image(countries[number])
 //                                    .renderingMode(.original)
 //                                    .clipShape(Capsule())
@@ -187,25 +187,25 @@ struct ContentView: View {
             }.padding()
             
             
-            .alert(scoreTitle, isPresented: $showingScore){
-                Button("Continue", action: askQuestion)
-            } message: {
-                Text("Your score is \(userScore)")
-            }
+                .alert(scoreTitle, isPresented: $showingScore){
+                    Button("Continue", action: askQuestion)
+                } message: {
+                    Text("Your score is \(userScore)")
+                }
             
-            .alert("Game Over", isPresented: $gameOver){
-                Button("New Game", action: newGame)
-                
-                
-                
-            } message: {
-                Text("""
+                .alert("Game Over", isPresented: $gameOver){
+                    Button("New Game", action: newGame)
+                    
+                    
+                    
+                } message: {
+                    Text("""
             Final score
             Right answers: \(userScore)
             Wrong answers: \(8 - userScore)
             Corect % : \(winPercent.formatted(.percent))
             """)
-            }
+                }
             
             
             
